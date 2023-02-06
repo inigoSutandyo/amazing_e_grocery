@@ -22,10 +22,10 @@ class OrderFactory extends Factory
 
         $randId = fake()->numberBetween(2,3);
         $account = Account::find($randId);
-        $item = Item::inRandomOrder()->get();
+        $item = Item::inRandomOrder()->first();
         return [
-            'account_id' => $account->id,
-            'item_id' => $item->id,
+            'account_id' => $account->account_id,
+            'item_id' => $item->item_id,
             'price' => $item->price,
         ];
     }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gender extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = "genders";
     protected $primaryKey = "gender_id";
     protected $fillable = [
