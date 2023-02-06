@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id('item_id');
             $table->string('item_name', 50);
             $table->string('item_desc', 500);
-            $table->int('price');
+            $table->integer("price");
+            $table->string("image_url");
         });
     }
 

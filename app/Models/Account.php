@@ -12,15 +12,21 @@ class Account extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = "accounts";
+    protected $primaryKey = "account_id";
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
-        'password',
+        'first_name',
+        'last_name',
+        'display_picture_link',
+        'role_id',
+        'gender_id',
+        'password'
     ];
 
     /**
