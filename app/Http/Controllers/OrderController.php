@@ -33,6 +33,6 @@ class OrderController extends Controller
     public function checkout($locale) {
         $id = auth()->user()->account_id;
         Order::where('account_id',$id)->delete();
-        return redirect()->route('home', ['locale' => app()->getLocale()]);
+        return view('item.success');
     }
 }
