@@ -12,5 +12,7 @@ return [
     'password' => 'Password',
     'confirm_password' => "Confirm Password",
     'have_account' => 'Already have an account? Click here to log in...',
-    'no_account' => "Don't have an account? Click here to register..."
+    'no_account' => "Don't have an account? Click here to register...",
+    'male' => 'Male',
+    'female' => 'Female',
 ];

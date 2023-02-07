@@ -12,5 +12,7 @@ return [
     'password' => 'Kata Sandi',
     'confirm_password' => "Konfirmasi Sandi",
     'have_account' => 'Sudah memiliki akun? Klik di sini untuk masuk...',
-    'no_account' => "Belum punya akun? Klik di sini untuk mendaftar..."
+    'no_account' => "Belum punya akun? Klik di sini untuk mendaftar...",
+    'male' => 'Laki-laki',
+    'female' => 'Perempuan',
 ];

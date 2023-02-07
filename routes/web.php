@@ -25,7 +25,16 @@ Route::prefix('{locale}')->middleware('localization')->group(function() {
         })->name('landing');
 
         Route::get('/register', [AuthController::class, 'toRegister'])->name('register');
+        Route::post('/register', [AuthController::class, 'register'])->name('register-validate');
         Route::get('/login', [AuthController::class, 'toLogin'])->name('login');
     });
+    // Route::middleware('auth')->group(function () {
+    //     Route::get('/', function () {
+    //         return redirect('/home');
+    //     })->name('landing');
+
+    //     Route::get('/home', [AuthController::class, 'toRegister'])->name('register');
+    // });
+
 });
 
