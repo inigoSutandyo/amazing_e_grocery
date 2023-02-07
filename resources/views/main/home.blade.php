@@ -23,11 +23,11 @@
         <div class="d-flex justify-content-center w-100 mt-3">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="{{$items->previousPageUrl()}}">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="{{$items->previousPageUrl()}}">{{__('home.previous')}}</a></li>
                     @for ($i = 1; $i <= $items->lastPage() ; $i++)
                         <li class="page-item {{$items->currentPage() == $i ? "active" : ""}}"><a class="page-link" href="{{$items->url($i)}}">{{$i}}</a></li>
                     @endfor
-                    <li class="page-item"><a class="page-link" href="{{$items->nextPageUrl()}}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="{{$items->nextPageUrl()}}">{{__('home.next')}}</a></li>
                 </ul>
             </nav>
         </div>

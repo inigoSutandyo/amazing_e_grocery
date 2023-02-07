@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,11 @@ Route::prefix('{locale}')->middleware('localization')->group(function() {
         Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout');
         Route::prefix('/item')->name('item.')->group(function () {
             Route::get('/detail/{item_id?}', [ItemController::class, 'detail'])->name('show');
+            Route::get('/buy/{item_id?}', [OrderController::class, 'add'])->name('buy');
+        });
+        Route::prefix('/cart')->name('cart.')->group(function() {
+            Route::get('/show', [OrderController::class, 'show'])->name('show');
+            Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
         });
     });
 

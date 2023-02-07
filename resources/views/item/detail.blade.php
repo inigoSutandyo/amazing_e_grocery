@@ -12,7 +12,7 @@
             <div class="col-6 d-flex justify-content-center pt-5 flex-column align-items-start">
                 <span class="fs-5 fw-bold mb-3">Price: Rp. {{number_format($item->price,2,",",".");}}</span>
                 <span class="mb-3">{{$item->item_desc}}</span>
-                <a class="btn btn-warning mt-5 w-75" href="">Buy</a>
+                <a class="btn btn-warning mt-5 w-75" href="{{ route('item.buy', ['item_id' => $item->item_id]) }}">Buy</a>
             </div>
         </div>
     </div>

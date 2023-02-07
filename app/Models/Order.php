@@ -16,4 +16,12 @@ class Order extends Model
         'item_id',
         'price',
     ];
+
+    public function account() {
+        return $this->belongsTo(Account::class);
+    }
+
+    public function item() {
+        return $this->belongsTo(Item::class);
+    }
 }

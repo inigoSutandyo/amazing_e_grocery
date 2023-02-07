@@ -19,22 +19,6 @@ body {
     background-color: #86C8BC !important;
 }
 
-.nav-container {
-    position: relative;
-    min-height: 2rem;
-    padding: 0 !important;
-}
-
-#title {
-    width: 100%;
-    position: absolute;
-}
-
-#auth {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
 
 .link-unstyled, .link-unstyled:link, .link-unstyled:hover {
     color: inherit !important;

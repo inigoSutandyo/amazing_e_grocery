@@ -17,4 +17,12 @@ class Item extends Model
         'price',
         'image_url',
     ];
+
+    public function accounts() {
+        return $this->belongsToMany(Account::class, 'orders', 'item_id', 'account_id');
+    }
+
+    public function orders() {
+        return $this->hasMany(Order::class, 'item_id');
+    }
 }

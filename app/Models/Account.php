@@ -47,4 +47,8 @@ class Account extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function items() {
+        return $this->belongsToMany(Item::class, 'orders', 'account_id', 'item_id');
+    }
 }
