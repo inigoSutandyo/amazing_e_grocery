@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
@@ -47,6 +48,10 @@ Route::prefix('{locale}')->middleware('localization')->group(function() {
         Route::prefix('/cart')->name('cart.')->group(function() {
             Route::get('/show', [OrderController::class, 'show'])->name('show');
             Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+        });
+        Route::prefix('/account')->name('account.')->group(function () {
+            Route::get('/me', [AccountController::class, 'profile'])->name('profile');
+            Route::post('/me', [AccountController::class, 'update'])->name('update');
         });
     });
 

@@ -31,7 +31,7 @@
                             <a class="nav-link fs-6" href="{{ route('cart.show', ['locale'=>app()->getLocale()]) }}">{{__('home.cart')}}</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link fs-6" href="/">{{__('home.profile')}}</a>
+                            <a class="nav-link fs-6" href="{{ route('account.profile', ['locale'=>app()->getLocale()]) }}">{{__('home.profile')}}</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link fs-6" href="/">{{__('home.account_maintenance')}}</a>

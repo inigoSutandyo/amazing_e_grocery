@@ -15,4 +15,5 @@ return [
     'no_account' => "Don't have an account? Click here to register...",
     'male' => 'Male',
     'female' => 'Female',
+    'update' => "Update",
 ];

@@ -15,4 +15,5 @@ return [
     'no_account' => "Belum punya akun? Klik di sini untuk mendaftar...",
     'male' => 'Laki-laki',
     'female' => 'Perempuan',
+    'update'=>"Perbarui",
 ];

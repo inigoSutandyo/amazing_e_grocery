@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -22,14 +23,14 @@ class AuthController extends Controller
             'email'=>'required|unique:accounts,email|email',
             'first_name'=>'required|max:25|alpha_num',
             'last_name'=>'required|max:25|alpha_num',
-            'display_picture_link'=>'required|max:100|mimes:jpg,png',
+            'display_picture_link'=>'required|mimes:jpg,png',
             'password'=>['required','min:8',Password::min(8)->numbers(), 'confirmed'],
             'password_confirmation'=>['required','min:8',Password::min(8)->numbers()],
             'role_id'=>'required|in:1,2',
             'gender_id'=>'required|in:1,2',
         ]);
         $file = $request->file('display_picture_link');
-        $name = $request->email . '.' . $request->file('display_picture_link')->getClientOriginalName();
+        $name = date('YmdHi') . '.' . $request->file('display_picture_link')->getClientOriginalName();
         $file->move(public_path('\storage\images\accounts'), $name);
         $attr['display_picture_link'] = 'images/accounts/'.$name;
         Account::create($attr);

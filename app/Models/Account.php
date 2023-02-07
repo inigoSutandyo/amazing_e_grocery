@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -50,5 +52,23 @@ class Account extends Authenticatable
 
     public function items() {
         return $this->belongsToMany(Item::class, 'orders', 'account_id', 'item_id');
+    }
+
+    public function gender() {
+        return $this->belongsTo(Gender::class, 'gender_id');
+    }
+    public function role() {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function genderDesc(): Attribute {
+        return new Attribute(
+            get: fn() => $this->gender->gender_desc
+        );
+    }
+    public function roleName(): Attribute {
+        return new Attribute(
+            get: fn() => $this->role->role_name
+        );
     }
 }
