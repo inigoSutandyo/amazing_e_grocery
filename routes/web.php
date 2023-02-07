@@ -34,12 +34,14 @@ Route::prefix('{locale}')->middleware('localization')->group(function() {
             Route::post('/register', [AuthController::class, 'register'])->name('register-validate');
             Route::get('/login', [AuthController::class, 'toLogin'])->name('login');
             Route::post('/login', [AuthController::class, 'login'])->name('login-validate');
-            Route::get('/successful', [AuthController::class, 'success'])->name('auth-success');
         });
     });
     Route::middleware('auth')->group(function () {
         Route::get('/home', [ItemController::class, 'home'])->name('home');
         Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::prefix('/item')->name('item.')->group(function () {
+            Route::get('/detail/{item_id?}', [ItemController::class, 'detail'])->name('show');
+        });
     });
 
 });

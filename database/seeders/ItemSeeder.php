@@ -58,5 +58,14 @@ class ItemSeeder extends Seeder
             "price" => fake()->numberBetween(10000,300000),
             "image_url" => "images/items/carrot.jpg",
         ]);
+
+        for ($i=0; $i < 10; $i++) {
+            DB::table("items")->insert([
+                "item_name" => "Dummy " . ($i+8),
+                "item_desc" => fake()->text(499),
+                "price" => fake()->numberBetween(10000,300000),
+                "image_url" => "images/items/brocoli.jpg",
+            ]);
+        }
     }
 }
