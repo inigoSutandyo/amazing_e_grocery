@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +18,13 @@ Route::get('/', function () {
     return redirect(app()->getLocale());
 });
 
-Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('localization')->group(function() {
+Route::prefix('{locale}')->middleware('localization')->group(function() {
     Route::middleware('guest')->group(function () {
         Route::get('/', function () {
             return view('main.landing');
-        });
+        })->name('landing');
+
+        Route::get('/register', [AuthController::class, 'toRegister'])->name('register');
     });
 });
 

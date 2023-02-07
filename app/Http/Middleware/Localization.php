@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 
 class Localization
@@ -17,9 +18,24 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-        app()->setLocale($request->segment(1));
+        $locale = "en";
+        if (Session::has('lang')) {
+            $locale = Session::get('lang');
+        }
 
-        URL::defaults(['locale' => $request->segment(1)]);
+        $isValid = strlen($request->segment(1)) == 2 && strlen($request->segment(1)) == 2;
+        if ($isValid) {
+            $locale = $request->segment(1);
+            Session::put('lang', $locale);
+        }
+        app()->setLocale($locale);
+        URL::defaults(['locale' => $locale]);
+
+        if (!$isValid) {
+            $newUri = '/' . $locale . $request->getRequestUri();
+            return redirect($newUri);
+        }
+
 
         return $next($request);
     }
