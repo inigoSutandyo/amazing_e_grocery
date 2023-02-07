@@ -25,6 +25,7 @@ Route::prefix('{locale}')->middleware('localization')->group(function() {
         })->name('landing');
 
         Route::get('/register', [AuthController::class, 'toRegister'])->name('register');
+        Route::get('/login', [AuthController::class, 'toLogin'])->name('login');
     });
 });
 

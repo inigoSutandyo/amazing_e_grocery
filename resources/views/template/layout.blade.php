@@ -25,7 +25,7 @@
                         </li>
                     @endforeach
                     <li class="nav-item mx-2">
-                        <a class="btn btn-warning" aria-current="page" href="/">Login</a>
+                        <a class="btn btn-warning" aria-current="page" href="{{ route('login', ['locale'=>app()->getLocale()]) }}">Login</a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="btn btn-primary" aria-current="page" href="{{ route('register', ['locale'=>app()->getLocale()]) }}">Register</a>

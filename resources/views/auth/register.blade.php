@@ -57,7 +57,7 @@
                 <label for="confirm_password" class="input-group-text">{{ __('form.confirm_password') }}</label>
                 <input type="password" class="form-control" id="confirm_password" name="confirm_password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary w-100">{{__('form.register')}}</button>
         </form>
     </div>
 @endsection
