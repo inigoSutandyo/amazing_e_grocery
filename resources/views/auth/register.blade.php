@@ -14,11 +14,11 @@
                 <div class="input-group">
                     <label for="first_name" class="input-group-text">{{ __('form.first_name') }}</label>
                     <input type="text" class="form-control me-4 @error('first_name') is-invalid @enderror"
-                        id="first_name" name="first_name">
+                        id="first_name" name="first_name" value="{{old('first_name')}}">
 
                     <label for="last_name" class="input-group-text">{{ __('form.last_name') }}</label>
                     <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name"
-                        name="last_name">
+                        name="last_name" value="{{old('last_name')}}">
                 </div>
                 <div>
                     @error('first_name')
@@ -32,7 +32,7 @@
             <div class="mb-3">
                 <label for="email" class="form-label">{{ __('form.email') }}</label>
                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                    name="email">
+                    name="email" value="{{old('email')}}">
                 @error('email')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -72,7 +72,7 @@
                     <div style="flex: 1;">
                         <label for="display_picture_link" class="form-label">{{ __('form.display_picture') }}</label>
                         <input type="file" class="form-control @error('display_picture_link') is-invalid @enderror"
-                            id="display_picture_link" name="display_picture_link">
+                            id="display_picture_link" name="display_picture_link" value="{{old('display_picture_link')}}">
                     </div>
                 </div>
                 <div>
@@ -90,15 +90,15 @@
                     <input type="password" class="form-control me-4 @error('password') is-invalid @enderror" id="password"
                         name="password">
 
-                    <label for="confirm_password" class="input-group-text">{{ __('form.confirm_password') }}</label>
-                    <input type="password" class="form-control @error('confirm_password') is-invalid @enderror"
-                        id="confirm_password" name="confirm_password">
+                    <label for="password_confirmation" class="input-group-text">{{ __('form.confirm_password') }}</label>
+                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                        id="password_confirmation" name="password_confirmation">
                 </div>
                 <div>
                     @error('password')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
-                    @error('confirm_password')
+                    @error('password_confirmation')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
