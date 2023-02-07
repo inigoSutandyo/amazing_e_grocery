@@ -47,4 +47,29 @@ class AccountController extends Controller
         $account->save();
         return view('account.success');
     }
+
+    public function maintenance() {
+        $accounts = Account::all();
+        return view('account.maintenance', compact('accounts'));
+    }
+
+    public function role($id) {
+        $account = Account::find($id);
+
+        return view('account.role', compact('account'));
+    }
+    public function updateRole(Request $request, $id) {
+        $request->validate([
+            'role_id' => 'in:1,2|required'
+        ]);
+        $account = Account::find($id);
+        $account->role_id = $request->role_id;
+        $account->save();
+        return redirect()->route('account.maintenance');
+    }
+
+    public function destroy($id) {
+        Account::find($id)->delete();
+        return redirect()->route('account.maintenance');
+    }
 }

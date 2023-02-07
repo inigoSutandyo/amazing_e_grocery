@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg nav-main">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fw-bold fs-3" href="{{ route('landing', ['locale' => app()->getLocale()]) }}">Amazing E-Grocery</a>
+            <a class="navbar-brand text-light fw-bold fs-3" href="{{ route('landing') }}">Amazing E-Grocery</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -24,35 +24,37 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item mx-2">
-                        <a class="nav-link fs-6" href="/">{{__('home.home')}}</a>
+                        <a class="nav-link fs-6" href="{{ route('landing') }}">{{__('home.home')}}</a>
                     </li>
                     @auth
                         <li class="nav-item mx-2">
-                            <a class="nav-link fs-6" href="{{ route('cart.show', ['locale'=>app()->getLocale()]) }}">{{__('home.cart')}}</a>
+                            <a class="nav-link fs-6" href="{{ route('cart.show') }}">{{__('home.cart')}}</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link fs-6" href="{{ route('account.profile', ['locale'=>app()->getLocale()]) }}">{{__('home.profile')}}</a>
+                            <a class="nav-link fs-6" href="{{ route('account.profile') }}">{{__('home.profile')}}</a>
                         </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link fs-6" href="/">{{__('home.account_maintenance')}}</a>
-                        </li>
+                        @if(auth()->user()->isAdmin())
+                            <li class="nav-item mx-2">
+                                <a class="nav-link fs-6" href="{{ route('account.maintenance') }}">{{__('home.account_maintenance')}}</a>
+                            </li>
+                        @endif
                     @endauth
                 </ul>
                 <div class="navbar-nav justify-content-end d-flex">
                     @foreach (config('app.available_locales') as $locale)
                         <li class="nav-item">
                             <a class="nav-link {{ app()->getLocale() == $locale ? 'active' : '' }}"
-                                href="{{ route(Route::currentRouteName(), ['locale' => $locale]) }}">{{ strtoupper($locale) }}</a>
+                                href="{{ route('change-lang', ['locale' => $locale]) }}">{{ strtoupper($locale) }}</a>
                         </li>
                     @endforeach
                     @guest
                         <li class="nav-item mx-2">
                             <a class="btn btn-warning" aria-current="page"
-                                href="{{ route('login', ['locale' => app()->getLocale()]) }}">Login</a>
+                                href="{{ route('login') }}">Login</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="btn btn-primary" aria-current="page"
-                                href="{{ route('register', ['locale' => app()->getLocale()]) }}">Register</a>
+                                href="{{ route('register') }}">Register</a>
                         </li>
                     @endguest
                     @auth
@@ -61,7 +63,7 @@
                         </li>
                         <li class="nav-item mx-2">
                             <a class="btn btn-primary" aria-current="page"
-                                href="{{ route('logout', ['locale' => app()->getLocale()]) }}">Logout</a>
+                                href="{{ route('logout') }}">Logout</a>
                         </li>
                     @endauth
                     </div>

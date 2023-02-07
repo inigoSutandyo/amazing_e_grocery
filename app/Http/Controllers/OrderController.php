@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function add($locale, $item_id) {
+    public function add($item_id) {
         $item = Item::find($item_id);
         $account_id = auth()->user()->account_id;
         Order::create([
@@ -20,7 +20,7 @@ class OrderController extends Controller
         return redirect('/');
     }
 
-    public function show($locale) {
+    public function show() {
         $id = auth()->user()->account_id;
         // $orders = Order::query()->where('account_id','=',auth()->user()->account_id)->get();
         // dd(Item::find(1)->orders);

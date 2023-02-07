@@ -12,7 +12,7 @@ class ItemController extends Controller
         return view('main.home', compact('items'));
     }
 
-    public function detail($locale, $item_id) {
+    public function detail($item_id) {
         $item = Item::find($item_id);
         // dd($item);
         return view('item.detail', compact('item'));

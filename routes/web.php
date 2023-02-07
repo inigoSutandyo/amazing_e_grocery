@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,8 @@ Route::get('/', function () {
     return redirect(app()->getLocale());
 });
 
-Route::prefix('{locale}')->middleware('localization')->group(function() {
+Route::middleware('localization')->group(function() {
+    Route::get('/lang/{locale}', [LangController::class, 'changeLanguage'])->name('change-lang');
     Route::get('/', function () {
         if (Auth::check()) {
             return redirect()->route('home');
@@ -52,6 +54,12 @@ Route::prefix('{locale}')->middleware('localization')->group(function() {
         Route::prefix('/account')->name('account.')->group(function () {
             Route::get('/me', [AccountController::class, 'profile'])->name('profile');
             Route::post('/me', [AccountController::class, 'update'])->name('update');
+            Route::middleware('admin')->group(function () {
+                Route::get('/maintenance', [AccountController::class, 'maintenance'])->name('maintenance');
+                Route::get('/delete/{id?}', [AccountController::class, 'destroy'])->name('delete');
+                Route::get('/role/{id?}', [AccountController::class, 'role'])->name('role');
+                Route::post('/role/{id?}', [AccountController::class, 'updateRole'])->name('update-role');
+            });
         });
     });
 

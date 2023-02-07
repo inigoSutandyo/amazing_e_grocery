@@ -71,4 +71,8 @@ class Account extends Authenticatable
             get: fn() => $this->role->role_name
         );
     }
+
+    public function isAdmin() {
+        return $this->role_id == 1;
+    }
 }

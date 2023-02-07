@@ -2,12 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Account;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
 
-class Localization
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -18,12 +17,10 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale = "en";
-        if (Session::has('lang')) {
-            $locale = Session::get('lang');
+        $account = Account::find(auth()->user()->account_id);
+        if (!$account->isAdmin()) {
+            return redirect('/');
         }
-        app()->setLocale($locale);
-        URL::defaults(['locale' => $locale]);
         return $next($request);
     }
 }
