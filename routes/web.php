@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,17 +25,20 @@ Route::prefix('{locale}')->middleware('localization')->group(function() {
             return view('main.landing');
         })->name('landing');
 
-        Route::get('/register', [AuthController::class, 'toRegister'])->name('register');
-        Route::post('/register', [AuthController::class, 'register'])->name('register-validate');
-        Route::get('/login', [AuthController::class, 'toLogin'])->name('login');
+        Route::prefix('/auth')->middleware('guest')->group(function () {
+            Route::get('/register', [AuthController::class, 'toRegister'])->name('register');
+            Route::post('/register', [AuthController::class, 'register'])->name('register-validate');
+            Route::get('/login', [AuthController::class, 'toLogin'])->name('login');
+            Route::post('/login', [AuthController::class, 'login'])->name('login-validate');
+        });
     });
-    // Route::middleware('auth')->group(function () {
-    //     Route::get('/', function () {
-    //         return redirect('/home');
-    //     })->name('landing');
+    Route::middleware('auth')->group(function () {
+        Route::get('/', function () {
+            return redirect('/home');
+        })->name('landing');
 
-    //     Route::get('/home', [AuthController::class, 'toRegister'])->name('register');
-    // });
+        Route::get('/home', [ItemController::class, 'home'])->name('home');
+    });
 
 });
 

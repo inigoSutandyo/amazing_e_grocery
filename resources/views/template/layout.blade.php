@@ -17,19 +17,29 @@
             <div class="d-flex w-100 justify-content-center" style="flex: 1" id="title">
                 <a class="navbar-brand text-light fw-bold fs-3" href="/">Amazing E-Grocery</a>
             </div>
-            <div id="auth">
+            <div id="auth" class="px-2">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @foreach(config('app.available_locales') as $locale)
                         <li class="nav-item">
                             <a class="nav-link {{app()->getLocale() == $locale ? "active" : ""}}" href="{{ route(Route::currentRouteName(), ['locale'=>$locale]) }}">{{ strtoupper($locale) }}</a>
                         </li>
                     @endforeach
-                    <li class="nav-item mx-2">
-                        <a class="btn btn-warning" aria-current="page" href="{{ route('login', ['locale'=>app()->getLocale()]) }}">Login</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="btn btn-primary" aria-current="page" href="{{ route('register', ['locale'=>app()->getLocale()]) }}">Register</a>
-                    </li>
+                    @guest
+                        <li class="nav-item mx-2">
+                            <a class="btn btn-warning" aria-current="page" href="{{ route('login', ['locale'=>app()->getLocale()]) }}">Login</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="btn btn-primary" aria-current="page" href="{{ route('register', ['locale'=>app()->getLocale()]) }}">Register</a>
+                        </li>
+                    @endguest
+                    @auth
+                        <li class="nav-item mx-2">
+                            <span class="nav-link">Hi, {{auth()->user()->first_name}}</span>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="btn btn-primary" aria-current="page" href="">Logout</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>
