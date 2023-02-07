@@ -43,9 +43,18 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect('/');
+            return redirect()->route('auth-success');
         }else {
             return redirect()->route('login')->withErrors('msg', __('auth.failed'));
         }
+    }
+
+    public function sucess() {
+        return view('auth.successful');
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect('/');
     }
 }

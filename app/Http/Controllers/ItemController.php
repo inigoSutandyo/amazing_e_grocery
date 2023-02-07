@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
     public function home() {
-        return view('main.home');
+        $items = Item::all();
+        return view('main.home', compact('items'));
     }
 }

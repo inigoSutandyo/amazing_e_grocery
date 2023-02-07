@@ -2,5 +2,7 @@
 @section('header')
 @endsection
 @section('content')
-    <h3>Hello</h3>
+    <div class="p-3 d-flex">
+    
+    </div>
 @endsection

@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg py-3 nav-main">
         <div class="container-fluid nav-container">
             <div class="d-flex w-100 justify-content-center" style="flex: 1" id="title">
-                <a class="navbar-brand text-light fw-bold fs-3" href="/">Amazing E-Grocery</a>
+                <a class="navbar-brand text-light fw-bold fs-3" href="{{ route('landing', ['locale' => app()->getLocale()]) }}">Amazing E-Grocery</a>
             </div>
             <div id="auth" class="px-2">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -37,7 +37,7 @@
                             <span class="nav-link">Hi, {{auth()->user()->first_name}}</span>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="btn btn-primary" aria-current="page" href="">Logout</a>
+                            <a class="btn btn-primary" aria-current="page" href="{{ route('logout', ['locale'=>app()->getLocale()]) }}">Logout</a>
                         </li>
                     @endauth
                 </ul>
