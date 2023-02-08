@@ -16,28 +16,18 @@ class AccountController extends Controller
 
     public function update(Request $request) {
         $account = Account::find(auth()->user()->account_id);
-        $password = $request->password;
-        if (isset($password) && !empty($password)) {
-            $attr = $request->validate([
-                'email'=>['required','email',Rule::unique('accounts','email')->ignore($account->account_id, 'account_id')],
-                'first_name'=>'required|max:25|alpha_num',
-                'last_name'=>'required|max:25|alpha_num',
-                'display_picture_link'=>'required|mimes:jpg,png',
-                'password'=>['required','min:8',Password::min(8)->numbers(), 'confirmed'],
-                'password_confirmation'=>['required','min:8',Password::min(8)->numbers()],
-                'gender_id'=>'required|in:1,2',
-            ]);
-            $attr['password'] = bcrypt($attr['password']);
-        } else {
-            $attr = $request->validate([
-                'email'=>['required','email',Rule::unique('accounts','email')->ignore($account->account_id, 'account_id')],
-                'first_name'=>'required|max:25|alpha_num',
-                'last_name'=>'required|max:25|alpha_num',
-                'display_picture_link'=>'required|mimes:jpg,png,jpeg',
-                'gender_id'=>'required|in:1,2',
-            ]);
-        }
 
+        $attr = $request->validate([
+            'email'=>['required','email',Rule::unique('accounts','email')->ignore($account->account_id, 'account_id')],
+            'first_name'=>'required|max:25|alpha_num',
+            'last_name'=>'required|max:25|alpha_num',
+            'display_picture_link'=>'required|mimes:jpg,png',
+            'password'=>['required','min:8',Password::min(8)->numbers(), 'confirmed'],
+            'password_confirmation'=>['required','min:8',Password::min(8)->numbers()],
+            'gender_id'=>'required|in:1,2',
+        ]);
+
+        $attr['password'] = bcrypt($attr['password']);
         $file = $request->file('display_picture_link');
         $name = date('YmdHi') . '.' . $request->file('display_picture_link')->getClientOriginalName();
         $file->move(public_path('\storage\images\accounts'), $name);
