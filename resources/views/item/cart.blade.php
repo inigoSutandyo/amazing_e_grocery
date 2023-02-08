@@ -18,7 +18,7 @@
                         <div>
                             <h5 class="card-title">{{ $order->item_name }}</h5>
                             <p class="card-text">Price: Rp. {{ number_format($order->price, 2, ',', '.') }}</p>
-                            <a href="#" class="btn btn-primary">{{ __('cart.delete') }}</a>
+                            <a href="{{ route('cart.delete', ['id'=>$order->item_id]) }}" class="btn btn-primary">{{ __('cart.delete') }}</a>
                         </div>
                         <div hidden>
                             {{ $total += $order->price }}

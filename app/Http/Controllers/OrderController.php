@@ -30,9 +30,15 @@ class OrderController extends Controller
         return view('item.cart', compact('orders'));
     }
 
-    public function checkout($locale) {
+    public function checkout() {
         $id = auth()->user()->account_id;
         Order::where('account_id',$id)->delete();
         return view('item.success');
+    }
+
+    public function delete($id) {
+        $account_id = auth()->user()->account_id;
+        Order::query()->where('account_id',$account_id)->where('item_id', $id)->delete();
+        return back();
     }
 }

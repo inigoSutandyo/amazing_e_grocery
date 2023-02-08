@@ -49,6 +49,7 @@ Route::middleware('localization')->group(function() {
         });
         Route::prefix('/cart')->name('cart.')->group(function() {
             Route::get('/show', [OrderController::class, 'show'])->name('show');
+            Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('delete');
             Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
         });
         Route::prefix('/account')->name('account.')->group(function () {

@@ -33,6 +33,7 @@ class AuthController extends Controller
         $name = date('YmdHi') . '.' . $request->file('display_picture_link')->getClientOriginalName();
         $file->move(public_path('\storage\images\accounts'), $name);
         $attr['display_picture_link'] = 'images/accounts/'.$name;
+        $attr['password'] = bcrypt($attr['password']);
         Account::create($attr);
         return redirect('/');
     }
